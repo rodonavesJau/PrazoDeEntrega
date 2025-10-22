@@ -1,0 +1,353 @@
+/* style.css */
+body {
+  margin: 0;
+  padding: 0;
+  /* Fonte atualizada: SF Pro Display (iOS/macOS), com fallback */
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Cor de fundo primária - Azul claro mais escuro */
+  background-color: #d9ecff; /* Fundo azul claro um pouco mais escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Usa min-height para garantir que o body cubra a tela */
+  padding: 20px; /* Adiciona padding para telas pequenas */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Estado inicial - card centralizado */
+.layout-wrapper.initial {
+  justify-content: center;
+}
+
+/* Estado com resultado - cards lado a lado */
+.layout-wrapper.with-result {
+  justify-content: flex-start;
+}
+
+/* Estilo para a Logo */
+.logo {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 20px;
+  /* Efeito de sombra sutil na logo */
+  filter: drop-shadow(0 4px 8px rgba(0, 122, 255, 0.2));
+}
+
+/* Logo mobile - escondido por padrão */
+.logo-mobile {
+  display: none;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  /* Sombra mais suave e moderna */
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e8ed; /* Borda sutil */
+  padding: 40px 30px; /* Reduz o padding lateral para melhor uso em mobile */
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  flex-shrink: 0;
+}
+
+.card:hover {
+  /* Removido o efeito de movimento - card fica estático */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Card de consulta */
+.consulta-card {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Card de resultado */
+.resultado-card {
+  width: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  max-width: 500px;
+}
+
+.resultado-card.show {
+  width: 100%;
+  opacity: 1;
+  padding: 40px 30px;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espaçamento entre ícone e texto */
+}
+
+h1 .fas {
+  color: #007aff;
+}
+
+.input-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px; /* Aumenta o padding para um toque mais fácil */
+  border: 2px solid #e1e8ed; /* Borda mais visível, mas clara */
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f7f9fb; /* Fundo leve para o campo */
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Sombra interna sutil */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box; /* Garante que padding não estoure a largura */
+}
+
+input:focus, select:focus {
+  border-color: #007aff;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1); /* Efeito de foco suave */
+}
+
+button {
+  width: 100%;
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 15px rgba(0, 122, 255, 0.3); /* Sombra para o botão */
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3; /* Azul mais escuro no hover */
+  transform: translateY(-3px); /* Efeito de elevação maior */
+  box-shadow: 0 12px 20px rgba(0, 122, 255, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
+}
+
+.resultado {
+  padding: 20px;
+  border-radius: 12px;
+  background: #e6f0ff; /* Fundo azul claro para destaque */
+  color: #1c3a64;
+  font-size: 1rem;
+  text-align: left;
+  line-height: 1.6;
+  border-left: 5px solid #007aff; /* Borda esquerda de destaque */
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.1);
+  white-space: normal; /* Garante que o texto quebre linhas */
+  transition: all 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.resultado-placeholder {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.resultado-placeholder i {
+  font-size: 2rem;
+  color: #007aff;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.resultado strong {
+  color: #0056b3; /* Cor mais escura para o texto forte */
+}
+
+.loading {
+  color: #007aff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Responsividade - Media Query para telas menores */
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start; /* Alinha no topo em mobile */
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .layout-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .layout-wrapper.initial,
+  .layout-wrapper.with-result {
+    justify-content: flex-start;
+  }
+  
+  /* Logo removido em mobile */
+  .consulta-card .logo {
+    display: none;
+  }
+  
+  .logo-mobile {
+    display: none;
+  }
+  
+  .consulta-card {
+    width: calc(100% - 60px);
+    max-width: calc(100% - 60px);
+    margin: 0 30px;
+    padding: 25px 20px;
+  }
+  
+  .resultado-card {
+    width: calc(100% - 30px);
+    max-width: calc(100% - 30px);
+    opacity: 1;
+    padding: 0;
+    margin: 0 15px;
+    overflow: visible;
+  }
+  
+  .resultado-card.show {
+    width: calc(100% - 30px);
+    opacity: 1;
+    padding: 0;
+    margin: 0 15px;
+  }
+  
+  .resultado {
+    margin-top: 0;
+    min-height: auto;
+    display: block;
+    padding: 25px 20px;
+  }
+  
+  /* Melhor espaçamento para elementos do card de consulta */
+  .consulta-card h1 {
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+  }
+  
+  .consulta-card .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .consulta-card .logo {
+    margin-bottom: 15px;
+  }
+  
+  /* Melhor espaçamento para o resultado */
+  .resultado p {
+    margin-bottom: 12px;
+  }
+  
+  .resultado hr {
+    margin: 18px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 10px;
+  }
+  
+  .layout-wrapper {
+    gap: 20px;
+  }
+  
+  .consulta-card {
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 0 20px;
+    padding: 20px 15px;
+    border-radius: 15px;
+  }
+
+  .consulta-card h1 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  
+  .consulta-card .logo {
+    margin-bottom: 12px;
+  }
+  
+  .consulta-card .input-group {
+    margin-bottom: 18px;
+  }
+
+  input, select, button {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .resultado {
+    padding: 20px 15px;
+    font-size: 0.95rem;
+    min-height: auto;
+  }
+  
+  .resultado p {
+    margin-bottom: 10px;
+  }
+  
+  .resultado hr {
+    margin: 15px 0;
+  }
+}
